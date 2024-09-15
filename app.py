@@ -29,7 +29,7 @@ def load_source_code_to_graph(directory_path):
             directory_path,
             glob="**/*",
             suffixes=[".py", ".js", ".go", ".md", ".html"],
-            exclude=[r"^\..*", r"README.md", r"system.md", r"LICENSE", r"go.sum", r"system.md", r"patterns/**/*"],  # Exclude .dot files and virtual environments
+            exclude=[r"^\..*"],  # Exclude .dot files and virtual environments
             parser=LanguageParser()
         )
         documents = loader.load()
@@ -89,7 +89,7 @@ def load_source_code_to_graph(directory_path):
         raise
                                                                                                                                                                        
  # Example usage                                                                                                                                                       
-directory_path = "/home/sarah/Documents/AI_Code/fabric"                                                                                                                             
+directory_path = "/path/to/your/codebase"                                                                                                                             
 load_source_code_to_graph(directory_path) 
 
 # %%
