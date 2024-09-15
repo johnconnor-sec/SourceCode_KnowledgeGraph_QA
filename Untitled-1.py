@@ -75,8 +75,9 @@ def load_source_code_to_graph(directory_path):
         graph.refresh_schema()                                                                                                                                        
         print("Graph schema updated:", graph.schema)                                                                                                                  
     except Exception as e:                                                                                                                                            
-        print(f"Error loading source code: {str(e)}")                                                                                                                 
-        raise  # Re-raise the exception for further debugging
+        print(f"Error loading source code: {str(e)}")
+        # Consider logging the error or handling specific exceptions
+        raise
                                                                                                                                                                        
  # Example usage                                                                                                                                                       
 directory_path = "/home/sarah/Documents/AI_Code/fabric"                                                                                                                             
@@ -109,6 +110,7 @@ def setup_qa_chain():
         return chain
     except Exception as e:
         print(f"Error setting up QA Chain: {str(e)}")
+        # Consider logging the error or handling specific exceptions
         return None
 
 # %%
