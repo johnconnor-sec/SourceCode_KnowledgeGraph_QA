@@ -101,7 +101,7 @@ def setup_qa_chain():
             raise ValueError("Graph schema is empty. Make sure data has been loaded into the graph.")
 
         # Initialize the language model
-        llm = ChatOpenAI(model="chatgpt-4o-latest", temperature=0)  # Changed from gpt-4o-mini to gpt-3.5-turbo
+        llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)  # Changed from gpt-4o-mini to gpt-3.5-turbo
 
         # Create a custom prompt template
         CYPHER_GENERATION_TEMPLATE = """
@@ -116,7 +116,7 @@ def setup_qa_chain():
         Always return the content of the CodeChunk nodes in your queries.
         Do not include the word 'cypher' in your query.
 
-        Human: {question} Use the codebase provided in the current context.
+        Human: {question}
         AI: Based on the given schema, here's a Cypher query to answer your question:
 
         """
