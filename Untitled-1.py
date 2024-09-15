@@ -35,33 +35,33 @@ def load_source_code_to_graph(directory_path):
         print(f"Loaded documents: {[doc.metadata.get('name', 'Unknown') for doc in documents]}")                                                                      
                                                                                                                                                                        
         # Split documents if they're too large                                                                                                                        
-        languages = [
-            Language.PYTHON,
-            Language.JS,
-            Language.GO,
-            Language.HTML,
-            Language.MARKDOWN
-        ]
-
-        for lang in languages:
-            text_splitter = RecursiveCharacterTextSplitter.from_language(
-                language=lang,
-                chunk_size=1000,
-                chunk_overlap=0
-            )
-            split_docs = text_splitter.split_documents(documents)
-            print(f"Split documents for {lang}: {len(split_docs)} chunks")
-
-            # Populate Neo4j graph
-            for doc in split_docs:
-                query = """
-                MERGE (f:CodeChunk {name: $name})
-                SET f.content = $content, f.language = $language
-                """
-                graph.query(query, {
-                    "name": doc.metadata.get('name', 'Unknown'),
-                    "content": doc.page_content,
-                    "language": doc.metadata.get('language', 'Unknown')
+        languages = [                                                                                                                                                 
+            Language.PYTHON,                                                                                                                                          
+            Language.JS,                                                                                                                                              
+            Language.GO,                                                                                                                                              
+            Language.HTML,                                                                                                                                            
+            Language.MARKDOWN                                                                                                                                         
+        ]                                                                                                                                                             
+                                                                                                                                                                      
+        for lang in languages:                                                                                                                                        
+            text_splitter = RecursiveCharacterTextSplitter.from_language(                                                                                             
+                language=lang,                                                                                                                                        
+                chunk_size=1000,                                                                                                                                      
+                chunk_overlap=0                                                                                                                                       
+            )                                                                                                                                                         
+            split_docs = text_splitter.split_documents(documents)                                                                                                     
+            print(f"Split documents for {lang}: {len(split_docs)} chunks")                                                                                            
+                                                                                                                                                                      
+            # Populate Neo4j graph                                                                                                                                    
+            for doc in split_docs:                                                                                                                                    
+                query = """                                                                                                                                           
+                MERGE (f:CodeChunk {name: $name})                                                                                                                     
+                SET f.content = $content, f.language = $language                                                                                                      
+                """                                                                                                                                                   
+                graph.query(query, {                                                                                                                                  
+                    "name": doc.metadata.get('name', 'Unknown'),                                                                                                      
+                    "content": doc.page_content,                                                                                                                      
+                    "language": doc.metadata.get('language', 'Unknown')                                                                                               
                 })
                                                                                                                                                                        
         # Create relationships between code chunks                                                                                                                    
