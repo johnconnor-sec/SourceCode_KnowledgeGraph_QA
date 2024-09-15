@@ -105,8 +105,6 @@ def setup_qa_chain():
     except Exception as e:
         print(f"Error setting up QA Chain: {str(e)}")
         return None
-    else:
-        return chain
 
 # %%
 def answer_query(chain, query):
