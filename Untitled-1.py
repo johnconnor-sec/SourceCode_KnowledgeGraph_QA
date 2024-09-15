@@ -100,7 +100,6 @@ def setup_qa_chain():
             llm=llm,
             verbose=True,
             validate_cypher=True,
-            graph_schema=graph.schema,  # Explicitly provide the graph schema
             cypher_query_corrector=None,  # Optional: You can implement a custom corrector if needed
             return_intermediate_steps=True,  # This will return the Cypher query used
             return_direct=False  # Set to True if you want to return the raw graph query results
